@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:seriesmanager_frontend/bloc/auth/auth_event.dart';
-import 'package:seriesmanager_frontend/utils/auth_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'file:///C:/Users/Ori/Desktop/SeriesManager/seriesmanager_frontend/lib/services/auth_utils.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -11,8 +12,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void setOnStateChange(BuildContext context) {
     onChangeState = (Change<AuthState> auth) {
-      if (auth.nextState.loggedIn) Navigator.pushReplacementNamed(context, "/home");
-      else if (auth.currentState.loggedIn && !auth.nextState.loggedIn) Navigator.pushReplacementNamed(context, "/");
+      if (auth.nextState.loggedIn) {
+        SharedPreferences.getInstance().then((prefs) {
+          prefs.setString("token", auth.nextState.token);
+          Navigator.pushReplacementNamed(context, "/home");
+        });
+      } else if (auth.currentState.loggedIn && !auth.nextState.loggedIn) Navigator.pushReplacementNamed(context, "/");
     };
   }
 
