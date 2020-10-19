@@ -1,0 +1,4 @@
+<application xmlns:android="http://schemas.android.com/apk/res/android">
+    <meta-data android:name="io.flutter.network-policy"
+        android:resource="@xml/network_security_config"/>
+</application>
