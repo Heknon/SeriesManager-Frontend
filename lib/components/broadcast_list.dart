@@ -1,27 +1,26 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seriesmanager_frontend/bloc/auth/auth_bloc.dart';
 import 'package:seriesmanager_frontend/models/content/detailed_broadcast.dart';
 import 'package:seriesmanager_frontend/services/data_access.dart';
 
-import 'Broadcast.dart';
+import 'broadcast.dart';
 
 class BroadcastList extends StatelessWidget {
-  final List<DetailedBroadcast> broadcasts = List();
-
   @override
   Widget build(BuildContext context) {
     String token = context.bloc<AuthBloc>().state.token;
     return Container(
       child: StreamBuilder(
-        initialData: null,
+        initialData: [],
         stream: getDetailedBroadcasts(token),
         builder: (context, snap) {
-          DetailedBroadcast bc = snap.data;
-          broadcasts.add(bc);
+          print(snap.data.length);
           return ListView.builder(
-            itemCount: broadcasts.length,
-            itemBuilder: (BuildContext context, int index) => Broadcast(broadcast: bc),
+            itemCount: snap.data.length,
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) => Broadcast()
           );
         },
       ),

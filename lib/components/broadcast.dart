@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:seriesmanager_frontend/models/content/detailed_broadcast.dart';
+import 'dart:math' as math;
 
 class Broadcast extends StatelessWidget {
   final DetailedBroadcast broadcast;
@@ -9,6 +10,16 @@ class Broadcast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card();
+    return Container(
+      width: 100,
+      height: 100,
+      child: Card(
+        child: InkWell(
+          onTap: ,
+          child: Column(),
+        ),
+
+      ),
+    );
   }
 }

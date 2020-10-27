@@ -16,10 +16,10 @@ class API {
 
   API(this.version, {this.login, this.register, this.broadcast, this.detailedBroadcasts}) {
     base = "$baseUrl/api/v$version";
-    this.login = base += this.login;
-    this.register = base += this.register;
-    this.broadcast = base += broadcast;
-    this.detailedBroadcasts = base += detailedBroadcasts;
+    this.login = base + this.login;
+    this.register = base + this.register;
+    this.broadcast = base + broadcast;
+    this.detailedBroadcasts = base + detailedBroadcasts;
   }
 
   Future<Map<String, Object>> authenticate(String username, String password, bool stayLoggedIn) async {
@@ -32,14 +32,15 @@ class API {
   }
 
   Future<dynamic> accessInformation(String token, String route) async {
-    http.Response res =
-        await http.get(route, headers: {"Content-type": "application/json", "Authorization": "Bearer $token"});
+    Map<String, String> headers = {"Content-type": "application/json", "Authorization": "Bearer $token"};
+    http.Response res = await http.get(route, headers: headers);
     return jsonDecode(res.body);
   }
 
   Future<int> getStatusCode(String token, String route) async {
-    return (await http.get(route, headers: {"Content-type": "application/json", "Authorization": "Bearer $token"}))
-        .statusCode;
+    Map<String, String> headers = {"Content-type": "application/json", "Authorization": "Bearer $token"};
+    http.Response res = await http.get(route, headers: headers);
+    return res.statusCode;
   }
 }
 
@@ -50,6 +51,6 @@ class _V1 extends API {
           login: "/auth/login",
           register: "/auth/register",
           detailedBroadcasts: "/broadcast/detailed",
-          broadcast: "/broadcast/detailed",
+          broadcast: "/broadcast",
         );
 }

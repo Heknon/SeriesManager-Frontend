@@ -33,12 +33,18 @@ class Season extends Broadcast {
           releaseDate: releaseDate,
         );
 
+
+  @override
+  String toString() {
+    return 'Season{episodeCount: $episodeCount}';
+  }
+
   factory Season.fromMap(Map<String, dynamic> map) {
     Broadcast bc = Broadcast.fromMap(map);
     return new Season(
       seasonNumber: map['season_number'] as int,
       episodeCount: map['episode_count'] as int,
-      episodes: (map['episodes'] as List).map((e) => Episode.fromMap(e)).toList(),
+      episodes: ((map['episodes'] ?? []) as List).map((e) => Episode.fromMap(e)).toList(),
       id: bc.id,
       poster: bc.poster,
       overview: bc.overview,

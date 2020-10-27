@@ -38,6 +38,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       String token = json["token"];
       int status = json["status"];
       yield AuthState(token: token, loggedIn: status == 200, status: status);
+    } else if (event is AuthTokenUpdateEvent) {
+      yield AuthState(token: await event.token, loggedIn: true, status: 200);
     }
   }
 }

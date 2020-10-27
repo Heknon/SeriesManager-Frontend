@@ -10,7 +10,7 @@ class Movie extends DetailedBroadcast {
   final List<int> genreIds;
   final String originalLanguage;
 
-  const Movie({
+  Movie({
     @required this.adult,
     @required this.video,
     @required this.backdrop,
@@ -57,7 +57,7 @@ class Movie extends DetailedBroadcast {
       backdrop: map['backdrop_path'] as String,
       popularity: map['popularity'] as double,
       originalName: map['original_name'] as String,
-      genreIds: map['genre_ids'] as List<int>,
+      genreIds: (map['genreIds'] as List).map((e) => e as int).toList(),
       originalLanguage: map['original_language'] as String,
 
       homepage: bc.homepage,

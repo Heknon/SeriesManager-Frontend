@@ -31,45 +31,23 @@ class Broadcast {
     return 'Broadcast{id: $id, poster: $poster, overview: $overview, name: $name, voteAverage: $voteAverage, voteCount: $voteCount, watched: $watched, broadcastCount: $broadcastCount, releaseDate: $releaseDate}';
   }
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is Broadcast &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          poster == other.poster &&
-          overview == other.overview &&
-          name == other.name &&
-          voteAverage == other.voteAverage &&
-          voteCount == other.voteCount &&
-          watched == other.watched &&
-          broadcastCount == other.broadcastCount &&
-          releaseDate == other.releaseDate);
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      poster.hashCode ^
-      overview.hashCode ^
-      name.hashCode ^
-      voteAverage.hashCode ^
-      voteCount.hashCode ^
-      watched.hashCode ^
-      broadcastCount.hashCode ^
-      releaseDate.hashCode;
-
   factory Broadcast.fromMap(Map<String, dynamic> map) {
-    String date = map.containsKey("air_date") ? "air_date" : "release_date";
-    return new Broadcast(
+    if (map == null) return null;
+    String date = map.containsKey("first_air_date")
+        ? "first_air_date"
+        : map.containsKey("air_date")
+            ? "air_date"
+            : "release_date";
+    return Broadcast(
       id: map['id'] as int,
-      poster: map['poster'] as String,
+      poster: map['posterUrl'] as String,
       overview: map['overview'] as String,
       name: map['name'] as String,
       voteAverage: map['vote_average'] as double,
       voteCount: map['vote_count'] as int,
       watched: map['watched'] as bool,
-      broadcastCount: map['broadcast_count'] as int,
-      releaseDate: DateTime.fromMillisecondsSinceEpoch((map[date] as int) * 1000),
+      broadcastCount: map['broadcastCount'] as int,
+      releaseDate: DateTime.fromMillisecondsSinceEpoch((map[date]["epochSeconds"] as int) * 1000),
     );
   }
 }

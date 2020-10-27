@@ -83,7 +83,7 @@ class Person {
       creditId: map['creditId'] as String,
       name: map['name'] as String,
       gender: map['gender'] as int,
-      profile: map['profile'] as String,
+      profile: map['profileUrl'] as String,
       character: map['character'] as String,
       order: map['order'] as int,
     );

@@ -41,10 +41,11 @@ class Episode extends Broadcast {
 
   factory Episode.fromMap(Map<String, dynamic> map) {
     Broadcast bc = Broadcast.fromMap(map);
+    if (bc == null) return null;
     return new Episode(
-      crew: (map['crew'] as List).map((e) => Person.fromMap(e)).toList(),
+      crew: ((map['crew'] ?? []) as List).map((e) => Person.fromMap(e)).toList(),
       episodeNumber: map['episode_number'] as int,
-      guestStars: (map['guest_stars'] as List).map((e) => Person.fromMap(e)).toList(),
+      guestStars: ((map['guest_stars'] ?? []) as List).map((e) => Person.fromMap(e)).toList(),
       showId: map['show_id'] as int,
       productionCode: map['production_code'] as String,
       seasonNumber: map['season_number'] as int,

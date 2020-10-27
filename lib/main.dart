@@ -23,7 +23,7 @@ class SeriesManager extends StatelessWidget {
       child: MaterialApp(
         title: 'SeriesManager',
         theme: themeData,
-        initialRoute: "/",
+        initialRoute: "/loading",
         routes: routes,
         debugShowCheckedModeBanner: false,
       ),

@@ -13,9 +13,9 @@ class ShowsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color brightPurple = Theme.of(context).textTheme.headline6.color;
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: AppBarVisibleTabBarScroll.customAppBar(
+    return Container(
+      color: Theme.of(context).backgroundColor,
+      child: AppBarVisibleTabBarScroll.customAppBar(
         appBarTitle: Text(
           "Shows",
           style: TextStyle(color: brightPurple),

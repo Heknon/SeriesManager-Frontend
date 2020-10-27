@@ -1,3 +1,6 @@
+import 'dart:collection';
+
+import 'package:seriesmanager_frontend/models/content/broadcast.dart';
 import 'package:seriesmanager_frontend/models/content/detailed_broadcast.dart';
 import 'package:seriesmanager_frontend/models/content/detailed_movie.dart';
 import 'package:seriesmanager_frontend/models/content/detailed_tv_show.dart';
@@ -5,16 +8,24 @@ import 'package:seriesmanager_frontend/models/media_type.dart';
 
 import '../endpoints.dart';
 
-Stream<DetailedBroadcast> getDetailedBroadcasts(String token) async* {
-  List<Map<String, Object>> info = await V1.accessInformation(token, V1.detailedBroadcasts);
+Stream<List<DetailedBroadcast>> getDetailedBroadcasts(String token) async* {
+  if (token == null) {
+    yield [];
+    return;
+  }
+  List<dynamic> info = await V1.accessInformation(token, V1.detailedBroadcasts);
+  List<DetailedBroadcast> bcs = List();
 
-  for (Map<String, Object> i in info) {
+  for (LinkedHashMap<String, dynamic> i in info) {
     MediaType type = getMediaType(i["searchType"]);
-    if (type == MediaType.Movie) {
-      yield DetailedMovie.fromMap(i);
-    } else if (type == MediaType.Tv) {
-      yield DetailedTVShow.fromMap(i);
+    if (type == MediaType.Tv) {
+      DetailedBroadcast bc = DetailedTVShow.fromMap(i);
+      bcs.add(bc);
+      yield bcs;
+    } else if (type == MediaType.Movie) {
+      DetailedBroadcast bc = DetailedMovie.fromMap(i);
+      bcs.add(bc);
+      yield bcs;
     }
   }
-
 }

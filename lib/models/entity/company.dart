@@ -62,8 +62,8 @@ class Company {
 
   factory Company.fromMap(Map<String, dynamic> map) {
     return new Company(
-      logo: map['logo_path'] as String,
-      logoObj: Logo.fromMap(map['logo']),
+      logo: map['logoUrl'] as String,
+      logoObj: map['logo'] == null ? null : Logo.fromMap(map['logo']),
       originCountry: map['origin_country'] as String,
       id: map['id'] as int,
       name: map['name'] as String,

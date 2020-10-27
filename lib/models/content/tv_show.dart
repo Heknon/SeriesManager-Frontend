@@ -11,7 +11,7 @@ class TVShow extends DetailedBroadcast {
   final String originalName;
   final List<Company> networks;
 
-  const TVShow({
+  TVShow({
     @required this.popularity,
     @required this.backdrop,
     @required this.originCountry,
@@ -50,16 +50,22 @@ class TVShow extends DetailedBroadcast {
           releaseDate: releaseDate,
         );
 
+
+  @override
+  String toString() {
+    return 'TVShow{popularity: $popularity, backdrop: $backdrop, originCountry: $originCountry, genreIds: $genreIds, originalLanguage: $originalLanguage, originalName: $originalName, networks: $networks}';
+  }
+
   factory TVShow.fromMap(Map<String, dynamic> map) {
     DetailedBroadcast bc = DetailedBroadcast.fromMap(map);
     return new TVShow(
       popularity: map['popularity'] as double,
-      backdrop: map['backdrop'] as String,
-      originCountry: map['origin_country'] as List<String>,
-      genreIds: map['genre_ids'] as List<int>,
+      backdrop: map['backdropUrl'] as String,
+      genreIds: (map['genreIds'] as List).map((e) => e as int).toList(),
       originalLanguage: map['original_language'] as String,
       originalName: map['original_name'] as String,
       networks: (map['networks'] as List).map((e) => Company.fromMap(e)).toList(),
+      originCountry: (map["origin_country"] as List).map((e) => e as String).toList(),
       homepage: bc.homepage,
       productionCompanies: bc.productionCompanies,
       status: bc.status,

@@ -8,10 +8,10 @@ class DetailedMovie extends Movie {
   final int budget;
   final String imdbId;
   final List<Country> productionCountries;
-  final int revenue;
+  final double revenue;
   final String tagline;
 
-  const DetailedMovie({
+  DetailedMovie({
     @required this.belongsToCollection,
     @required this.budget,
     @required this.imdbId,
@@ -63,6 +63,12 @@ class DetailedMovie extends Movie {
           releaseDate: releaseDate,
         );
 
+
+  @override
+  String toString() {
+    return 'DetailedMovie{belongsToCollection: $belongsToCollection, budget: $budget, imdbId: $imdbId, productionCountries: $productionCountries, revenue: $revenue, tagline: $tagline}';
+  }
+
   factory DetailedMovie.fromMap(Map<String, dynamic> map) {
     Movie bc = Movie.fromMap(map);
     return new DetailedMovie(
@@ -70,7 +76,7 @@ class DetailedMovie extends Movie {
       budget: map['budget'] as int,
       imdbId: map['imdb_id'] as String,
       productionCountries: (map['production_countries'] as List).map((e) => Country.fromMap(e)).toList(),
-      revenue: map['revenue'] as int,
+      revenue: map['revenue'] as double,
       tagline: map['tagline'] as String,
 
       adult: bc.adult,

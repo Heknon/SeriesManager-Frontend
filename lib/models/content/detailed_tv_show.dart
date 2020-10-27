@@ -17,7 +17,7 @@ class DetailedTVShow extends TVShow {
   final int numberOfSeason;
   final List<Season> seasons;
 
-  const DetailedTVShow({
+  DetailedTVShow({
     @required this.createdBy,
     @required this.runtime,
     @required this.inProduction,
@@ -73,19 +73,26 @@ class DetailedTVShow extends TVShow {
           releaseDate: releaseDate,
         );
 
+  @override
+  String toString() {
+    return 'DetailedTVShow{$numberOfEpisodes, numberOfSeason: $numberOfSeason}';
+  }
+
   factory DetailedTVShow.fromMap(Map<String, dynamic> map) {
     TVShow bc = TVShow.fromMap(map);
-    return new DetailedTVShow(
+    if (bc == null) return null;
+
+    DetailedTVShow tv = new DetailedTVShow(
       createdBy: (map['created_by'] as List).map((e) => Person.fromMap(e)).toList(),
-      runtime: map['runtime'] as List<int>,
+      runtime: (map['episode_run_time'] as List).map((e) => e as int).toList(),
       inProduction: map['in_production'] as bool,
-      languages: map['languages'] as List<String>,
-      lastAirDate: DateTime.fromMillisecondsSinceEpoch((map['last_air_date'] as int) * 1000),
+      languages: (map["languages"] as List).map((e) => e as String).toList(),
+      lastAirDate: DateTime.fromMillisecondsSinceEpoch((map['last_air_date']["epochSeconds"] as int) * 1000),
       lastEpisodeToAir: Episode.fromMap(map['last_episode_to_air']),
       nextEpisodeToAir: Episode.fromMap(map['next_episode_to_air']),
       numberOfEpisodes: map['number_of_episodes'] as int,
-      numberOfSeason: map['number_of_season'] as int,
-      seasons: map['seasons'] as List<Season>,
+      numberOfSeason: map['number_of_seasons'] as int,
+      seasons: (map["seasons"] as List).map((e) => Season.fromMap(e)).toList(),
       popularity: bc.popularity,
       backdrop: bc.backdrop,
       originCountry: bc.originCountry,
@@ -108,5 +115,6 @@ class DetailedTVShow extends TVShow {
       broadcastCount: bc.broadcastCount,
       releaseDate: bc.releaseDate,
     );
+    return tv;
   }
 }
