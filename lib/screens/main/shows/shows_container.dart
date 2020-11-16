@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:seriesmanager_frontend/components/appbar_tabbar.dart';
 import 'package:seriesmanager_frontend/components/main/shows/history_tab.dart';
+import 'package:seriesmanager_frontend/components/main/shows/recent_tab.dart';
 import 'package:seriesmanager_frontend/components/main/shows/shows_tab.dart';
-import 'file:///C:/Users/Ori/Desktop/SeriesManager/seriesmanager_frontend/lib/components/main/shows/recent_tab.dart';
-import 'file:///C:/Users/Ori/Desktop/SeriesManager/seriesmanager_frontend/lib/components/main/shows/upcoming_tab.dart';
+import 'package:seriesmanager_frontend/components/main/shows/upcoming_tab.dart';
 
 
 class ShowsContainer extends StatelessWidget {

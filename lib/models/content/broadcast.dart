@@ -1,7 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:seriesmanager_frontend/models/content/detailed_tv_show.dart';
-import 'package:seriesmanager_frontend/models/content/episode.dart';
-import 'package:seriesmanager_frontend/models/content/tv_show.dart';
 
 class Broadcast {
   final int id;
@@ -13,6 +10,7 @@ class Broadcast {
   final bool watched;
   final int broadcastCount;
   final DateTime releaseDate;
+  final int broadcastsLeft;
 
   const Broadcast({
     @required this.id,
@@ -24,6 +22,7 @@ class Broadcast {
     @required this.watched,
     @required this.broadcastCount,
     @required this.releaseDate,
+    @required this.broadcastsLeft,
   });
 
   @override
@@ -42,12 +41,13 @@ class Broadcast {
       id: map['id'] as int,
       poster: map['posterUrl'] as String,
       overview: map['overview'] as String,
-      name: map['name'] as String,
+      name: map['name'] as String ?? map['title'] as String,
       voteAverage: map['vote_average'] as double,
       voteCount: map['vote_count'] as int,
       watched: map['watched'] as bool,
       broadcastCount: map['broadcastCount'] as int,
       releaseDate: DateTime.fromMillisecondsSinceEpoch((map[date]["epochSeconds"] as int) * 1000),
+      broadcastsLeft: map['broadcasts_left'] as int
     );
   }
 }

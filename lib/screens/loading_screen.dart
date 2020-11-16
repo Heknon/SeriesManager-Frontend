@@ -5,34 +5,26 @@ import 'package:seriesmanager_frontend/bloc/auth/auth_bloc.dart';
 import 'package:seriesmanager_frontend/bloc/auth/auth_event.dart';
 import 'package:seriesmanager_frontend/screens/login.dart';
 import 'package:seriesmanager_frontend/screens/main/page_container.dart';
-import 'package:seriesmanager_frontend/screens/main/shows/shows_container.dart';
 import 'package:seriesmanager_frontend/services/auth_utils.dart';
 
 class LoadingScreen extends StatelessWidget {
+  final Future<String> tokenFuture = getTokenFromSharedPreferences();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       initialData: null,
-      future: isValidToken(getTokenFromSharedPreferences()),
+      future: isValidToken(tokenFuture),
       builder: (context, snap) {
-        print(snap.data);
         if (snap.data == null) {
-          return Test();
+          return Scaffold(body: Center(child: CircularProgressIndicator()));
         } else if (snap.data) {
-          BlocProvider.of<AuthBloc>(context).add(AuthTokenUpdateEvent(getTokenFromSharedPreferences()));
+          BlocProvider.of<AuthBloc>(context).add(AuthTokenUpdateEvent(tokenFuture));
           return PageContainer.defaultImpl();
         } else {
           return LoginPage();
         }
       },
     );
-  }
-}
-
-
-class Test extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Container(child: Text("fds")));
   }
 }

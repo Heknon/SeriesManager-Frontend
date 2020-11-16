@@ -33,6 +33,8 @@ class TVShow extends DetailedBroadcast {
     @required watched,
     @required broadcastCount,
     @required releaseDate,
+    @required broadcastsLeft,
+    @required watchedEpisodes,
   }) : super(
           homepage: homepage,
           lists: lists,
@@ -48,8 +50,9 @@ class TVShow extends DetailedBroadcast {
           watched: watched,
           broadcastCount: broadcastCount,
           releaseDate: releaseDate,
+          broadcastsLeft: broadcastsLeft,
+          watchedEpisodes: watchedEpisodes,
         );
-
 
   @override
   String toString() {
@@ -80,6 +83,8 @@ class TVShow extends DetailedBroadcast {
       watched: bc.watched,
       broadcastCount: bc.broadcastCount,
       releaseDate: bc.releaseDate,
+      broadcastsLeft: bc.broadcastsLeft,
+      watchedEpisodes: bc.watchedEpisodes,
     );
   }
 }

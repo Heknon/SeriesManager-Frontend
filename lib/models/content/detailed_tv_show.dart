@@ -49,6 +49,8 @@ class DetailedTVShow extends TVShow {
     @required watched,
     @required broadcastCount,
     @required releaseDate,
+    @required broadcastsLeft,
+    @required watchedEpisodes,
   }) : super(
           popularity: popularity,
           backdrop: backdrop,
@@ -71,6 +73,8 @@ class DetailedTVShow extends TVShow {
           watched: watched,
           broadcastCount: broadcastCount,
           releaseDate: releaseDate,
+          broadcastsLeft: broadcastsLeft,
+          watchedEpisodes: watchedEpisodes,
         );
 
   @override
@@ -114,6 +118,8 @@ class DetailedTVShow extends TVShow {
       watched: bc.watched,
       broadcastCount: bc.broadcastCount,
       releaseDate: bc.releaseDate,
+      broadcastsLeft: bc.broadcastsLeft,
+      watchedEpisodes: bc.watchedEpisodes,
     );
     return tv;
   }

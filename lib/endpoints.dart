@@ -50,7 +50,7 @@ class _V1 extends API {
           version,
           login: "/auth/login",
           register: "/auth/register",
-          detailedBroadcasts: "/broadcast/detailed",
+          detailedBroadcasts: "/broadcast/detailed?seasons=true",
           broadcast: "/broadcast",
         );
 }

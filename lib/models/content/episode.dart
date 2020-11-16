@@ -27,6 +27,7 @@ class Episode extends Broadcast {
     @required watched,
     @required broadcastCount,
     @required releaseDate,
+    @required broadcastsLeft,
   }) : super(
           id: id,
           poster: poster,
@@ -37,7 +38,13 @@ class Episode extends Broadcast {
           watched: watched,
           broadcastCount: broadcastCount,
           releaseDate: releaseDate,
+          broadcastsLeft: broadcastsLeft,
         );
+
+  @override
+  String toString() {
+    return 'Episode{episodeNumber: $episodeNumber, showId: $showId, productionCode: $productionCode, seasonNumber: $seasonNumber}';
+  }
 
   factory Episode.fromMap(Map<String, dynamic> map) {
     Broadcast bc = Broadcast.fromMap(map);
@@ -58,6 +65,7 @@ class Episode extends Broadcast {
       watched: bc.watched,
       broadcastCount: bc.broadcastCount,
       releaseDate: bc.releaseDate,
+      broadcastsLeft: bc.broadcastsLeft,
     );
   }
 }

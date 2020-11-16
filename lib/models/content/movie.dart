@@ -32,6 +32,8 @@ class Movie extends DetailedBroadcast {
     @required watched,
     @required broadcastCount,
     @required releaseDate,
+    @required broadcastsLeft,
+    @required watchedEpisodes,
   }) : super(
           homepage: homepage,
           lists: lists,
@@ -47,6 +49,8 @@ class Movie extends DetailedBroadcast {
           watched: watched,
           broadcastCount: broadcastCount,
           releaseDate: releaseDate,
+          broadcastsLeft: broadcastsLeft,
+          watchedEpisodes: watchedEpisodes,
         );
 
   factory Movie.fromMap(Map<String, dynamic> map) {
@@ -59,7 +63,6 @@ class Movie extends DetailedBroadcast {
       originalName: map['original_name'] as String,
       genreIds: (map['genreIds'] as List).map((e) => e as int).toList(),
       originalLanguage: map['original_language'] as String,
-
       homepage: bc.homepage,
       productionCompanies: bc.productionCompanies,
       status: bc.status,
@@ -74,6 +77,8 @@ class Movie extends DetailedBroadcast {
       watched: bc.watched,
       broadcastCount: bc.broadcastCount,
       releaseDate: bc.releaseDate,
+      broadcastsLeft: bc.broadcastsLeft,
+      watchedEpisodes: bc.watchedEpisodes,
     );
   }
 }

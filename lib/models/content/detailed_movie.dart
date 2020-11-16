@@ -39,6 +39,8 @@ class DetailedMovie extends Movie {
     @required watched,
     @required broadcastCount,
     @required releaseDate,
+    @required broadcastsLeft,
+    @required watchedEpisodes,
   }) : super(
           adult: adult,
           video: video,
@@ -61,8 +63,9 @@ class DetailedMovie extends Movie {
           watched: watched,
           broadcastCount: broadcastCount,
           releaseDate: releaseDate,
+          broadcastsLeft: broadcastsLeft,
+          watchedEpisodes: watchedEpisodes,
         );
-
 
   @override
   String toString() {
@@ -78,7 +81,6 @@ class DetailedMovie extends Movie {
       productionCountries: (map['production_countries'] as List).map((e) => Country.fromMap(e)).toList(),
       revenue: map['revenue'] as double,
       tagline: map['tagline'] as String,
-
       adult: bc.adult,
       video: bc.video,
       backdrop: bc.backdrop,
@@ -100,6 +102,8 @@ class DetailedMovie extends Movie {
       watched: bc.watched,
       broadcastCount: bc.broadcastCount,
       releaseDate: bc.releaseDate,
+      broadcastsLeft: bc.broadcastsLeft,
+      watchedEpisodes: bc.watchedEpisodes,
     );
   }
 }

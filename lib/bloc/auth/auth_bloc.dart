@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:seriesmanager_frontend/bloc/auth/auth_event.dart';
+import 'package:seriesmanager_frontend/services/auth_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'file:///C:/Users/Ori/Desktop/SeriesManager/seriesmanager_frontend/lib/services/auth_utils.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {

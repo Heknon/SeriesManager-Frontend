@@ -21,6 +21,7 @@ class Season extends Broadcast {
     @required watched,
     @required broadcastCount,
     @required releaseDate,
+    @required broadcastsLeft,
   }) : super(
           id: id,
           poster: poster,
@@ -31,8 +32,8 @@ class Season extends Broadcast {
           watched: watched,
           broadcastCount: broadcastCount,
           releaseDate: releaseDate,
+          broadcastsLeft: broadcastsLeft,
         );
-
 
   @override
   String toString() {
@@ -54,6 +55,7 @@ class Season extends Broadcast {
       watched: bc.watched,
       broadcastCount: bc.broadcastCount,
       releaseDate: bc.releaseDate,
+      broadcastsLeft: bc.broadcastsLeft,
     );
   }
 }

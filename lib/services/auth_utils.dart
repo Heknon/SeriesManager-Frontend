@@ -9,7 +9,7 @@ Future<Map<String, Object>> authenticateInformation(String username, String pass
 Future<bool> isValidToken(Future<String> tokenFuture) async {
   String token = await tokenFuture;
   int status = await V1.getStatusCode(token, V1.broadcast);
-  return status != 500;
+  return status == 200;
 }
 
 Future<String> getTokenFromSharedPreferences() async {
