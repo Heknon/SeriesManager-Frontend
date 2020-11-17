@@ -8,12 +8,13 @@ import 'package:seriesmanager_frontend/bloc/auth/auth_bloc.dart';
 import 'package:seriesmanager_frontend/bloc/auth/auth_event.dart';
 import 'package:seriesmanager_frontend/bloc/auth/auth_state.dart';
 import 'package:seriesmanager_frontend/components/featured_text_form_field.dart';
-import 'package:seriesmanager_frontend/services/auth_utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/screen_manipulation.dart';
-import 'main/page_container.dart';
 
 class LoginPage extends StatefulWidget {
+  static final GlobalKey<_LoginPageState> stateKey = GlobalKey();
+
+  LoginPage() : super(key: stateKey);
+
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
 }
@@ -32,7 +33,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     if (context.bloc<AuthBloc>().onChangeState == null) context.bloc<AuthBloc>().setOnStateChange(context);
-
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(

@@ -20,6 +20,7 @@ class LoadingScreen extends StatelessWidget {
           return Scaffold(body: Center(child: CircularProgressIndicator()));
         } else if (snap.data) {
           BlocProvider.of<AuthBloc>(context).add(AuthTokenUpdateEvent(tokenFuture));
+          context.bloc<AuthBloc>().enableBroadcasts(context);
           return PageContainer.defaultImpl();
         } else {
           return LoginPage();

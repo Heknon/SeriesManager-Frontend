@@ -33,6 +33,7 @@ dependencies:
   form_validator: ^0.1.5
   tuple: ^1.0.3
   kt_dart: ^0.8.0
+  get: ^3.17.1
   cached_network_image: ^2.3.3
 
 dev_dependencies:

@@ -30,6 +30,36 @@ class Broadcast {
     return 'Broadcast{id: $id, poster: $poster, overview: $overview, name: $name, voteAverage: $voteAverage, voteCount: $voteCount, watched: $watched, broadcastCount: $broadcastCount, releaseDate: $releaseDate}';
   }
 
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Broadcast &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          poster == other.poster &&
+          overview == other.overview &&
+          name == other.name &&
+          voteAverage == other.voteAverage &&
+          voteCount == other.voteCount &&
+          watched == other.watched &&
+          broadcastCount == other.broadcastCount &&
+          releaseDate == other.releaseDate &&
+          broadcastsLeft == other.broadcastsLeft;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      poster.hashCode ^
+      overview.hashCode ^
+      name.hashCode ^
+      voteAverage.hashCode ^
+      voteCount.hashCode ^
+      watched.hashCode ^
+      broadcastCount.hashCode ^
+      releaseDate.hashCode ^
+      broadcastsLeft.hashCode;
+
   factory Broadcast.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     String date = map.containsKey("first_air_date")
